@@ -31,7 +31,7 @@ public extension UILabel {
      - parameter minFontScale: The min font scale that the font will have
      - parameter rectSize:     Rect size where the label must fit
      */
-    public func fontSizeToFit(maxFontSize maxFontSize: CGFloat = CGFloat.NaN, minFontScale: CGFloat = 0.1,rectSize: CGSize? = nil) {
+    public func fontSizeToFit(maxFontSize: CGFloat = CGFloat.nan, minFontScale: CGFloat = 0.1,rectSize: CGSize? = nil) {
         let maxFontSize = maxFontSize.isNaN ? 100 : maxFontSize
         let minFontScale = minFontScale.isNaN ? 0.1 : minFontScale
         let rectSize = rectSize ?? bounds.size
@@ -42,20 +42,20 @@ public extension UILabel {
 
 private extension UILabel {
     
-    func fontSizeToFit(maxFontSize maxFontSize: CGFloat, minimumFontScale: CGFloat, rectSize: CGSize) {
+    func fontSizeToFit(maxFontSize: CGFloat, minimumFontScale: CGFloat, rectSize: CGSize) {
         var newAttributes = currentAttributedStringAttributes()
         guard let text = self.text where text.characters.count != 0 && newAttributes.count > 0 else {
             return
         }
         
         let minimumFontSize = maxFontSize * minimumFontScale
-        let boundingSize = numberOfLines == 1 ? CGSize(width: CGFloat.max, height: rectSize.height) : CGSize(width: rectSize.width, height: CGFloat.max)
+        let boundingSize = numberOfLines == 1 ? CGSize(width: CGFloat.greatestFiniteMagnitude, height: rectSize.height) : CGSize(width: rectSize.width, height: CGFloat.greatestFiniteMagnitude)
         var newFont = UIFont()
         var fontSize = maxFontSize
         repeat {
-            newFont = font.fontWithSize(fontSize)
+            newFont = font.withSize(fontSize)
             newAttributes[NSFontAttributeName] = newFont
-            let area = text.boundingRectWithSize(boundingSize, options: .UsesLineFragmentOrigin, attributes: newAttributes, context: nil).size
+            let area = text.boundingRect(with: boundingSize, options: .usesLineFragmentOrigin, attributes: newAttributes, context: nil).size
             if (numberOfLines == 1 && area.width <= rectSize.width) ||
                 (numberOfLines != 1 && area.height <= rectSize.height) {
                 break
@@ -69,9 +69,9 @@ private extension UILabel {
         font = newFont
     }
     
-    func currentAttributedStringAttributes() -> [String : AnyObject] {
+    func currentAttributedStringAttributes() -> [String: AnyObject] {
         var newAttributes = [String: AnyObject]()
-        attributedText?.enumerateAttributesInRange(NSRange(0..<(text?.characters.count ?? 0)), options: .LongestEffectiveRangeNotRequired, usingBlock: { attributes, range, stop in
+        attributedText?.enumerateAttributes(in: NSRange(0..<(text?.characters.count ?? 0)), options: .longestEffectiveRangeNotRequired, using: { attributes, range, stop in
             newAttributes = attributes
         })
         return newAttributes

@@ -56,7 +56,7 @@
 		E251BE3B1CCE82CB00EA621A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E251BE401CCE82CB00EA621A /* FittableFontLabel iOS.framework */,
+				E251BE401CCE82CB00EA621A /* FittableFontLabel.framework */,
 				E251BE421CCE82CB00EA621A /* FittableFontLabel iOS Tests.xctest */,
 			);
 			name = Products;
@@ -119,7 +119,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Recisio;
 				TargetAttributes = {
 					E2C3AF3D1C4FBFB300EB275B = {
@@ -152,10 +152,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E251BE401CCE82CB00EA621A /* FittableFontLabel iOS.framework */ = {
+		E251BE401CCE82CB00EA621A /* FittableFontLabel.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = "FittableFontLabel iOS.framework";
+			path = FittableFontLabel.framework;
 			remoteRef = E251BE3F1CCE82CB00EA621A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -315,6 +315,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.recisio.IncrementableLabel;
 				PRODUCT_NAME = "FittableFontLabel iOS";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
