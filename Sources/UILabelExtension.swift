@@ -44,7 +44,7 @@ private extension UILabel {
     
     func fontSizeToFit(maxFontSize: CGFloat, minimumFontScale: CGFloat, rectSize: CGSize) {
         var newAttributes = currentAttributedStringAttributes()
-        guard let text = self.text where text.characters.count != 0 && newAttributes.count > 0 else {
+        guard let text = self.text, text.characters.count != 0 && newAttributes.count > 0 else {
             return
         }
         
